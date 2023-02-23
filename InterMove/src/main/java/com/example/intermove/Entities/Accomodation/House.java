@@ -1,16 +1,25 @@
 package com.example.intermove.Entities.Accomodation;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 @Entity
-public class Houses {
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+public class House {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id ;
     @Enumerated(EnumType.STRING)
-    private com.example.intermove.Entities.Accomodation.TypeHouses TypeHouses;
+    private TypeHouses TypeHouses;
+    private String country;
+    private String region;
     private String adress;
+    private Integer Loyer;
     private Boolean available;
     private Integer nbrOfRooms;
 
