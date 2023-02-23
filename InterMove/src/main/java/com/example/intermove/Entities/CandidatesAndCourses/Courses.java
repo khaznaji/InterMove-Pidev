@@ -1,13 +1,24 @@
 package com.example.intermove.Entities.CandidatesAndCourses;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Data
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Courses {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String Name;
     private String DomainCourse;
+    @ManyToMany
+    @JsonIgnore
+    List<Tags> tags;
 }

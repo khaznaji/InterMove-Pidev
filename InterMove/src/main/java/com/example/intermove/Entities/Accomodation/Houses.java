@@ -1,7 +1,9 @@
 package com.example.intermove.Entities.Accomodation;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.persistence.*;
+@Entity
 public class Houses {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,5 +13,10 @@ public class Houses {
     private String adress;
     private Boolean available;
     private Integer nbrOfRooms;
+
+    @ManyToOne
+    @JsonIgnore
+    public Agency agency;
+
 
 }
