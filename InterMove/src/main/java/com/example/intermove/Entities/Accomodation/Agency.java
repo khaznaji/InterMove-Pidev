@@ -1,10 +1,16 @@
 package com.example.intermove.Entities.Accomodation;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 @Entity
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class Agency {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +26,7 @@ public class Agency {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="agency")
     @JsonIgnore
-    public List<Houses> houses;
+    public List<House> houses;
 
 
 }
