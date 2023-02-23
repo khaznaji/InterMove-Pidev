@@ -1,6 +1,5 @@
 package com.example.intermove.Entities.Forum;
 
-import com.example.intermove.Entities.CandidatesAndCourses.Tags;
 import com.example.intermove.Entities.User.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
@@ -9,7 +8,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
+
 @Data
 @Entity
 @NoArgsConstructor
@@ -21,7 +20,7 @@ public class Post implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int postID;
-    private String post;
+    private String title;
     private String postdescription;
     private String postimage;
     private int nbrLIKE;
@@ -32,6 +31,6 @@ public class Post implements Serializable {
  private User user;
 @OneToMany(mappedBy = "posts")
     @JsonIgnore
-   List<Commentaires> commentaires;
+   List<Comment> commentaires;
 
 }

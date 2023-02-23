@@ -2,7 +2,7 @@ package com.example.intermove.Entities.User;
 
 import com.example.intermove.Entities.EventsAndComplaints.Claim;
 import com.example.intermove.Entities.EventsAndComplaints.Events;
-import com.example.intermove.Entities.Forum.Messages;
+import com.example.intermove.Entities.Forum.Message;
 import com.example.intermove.Entities.Forum.Post;
 import com.example.intermove.Entities.Offer.Offer;
 import com.example.intermove.Entities.Quizz.Response;
@@ -59,7 +59,7 @@ public class User  {
     private List<Post> posts;
     @OneToMany (mappedBy = "user", cascade = CascadeType.ALL)
     @JsonIgnore
-    private List<Messages> messages;
+    private List<Message> messages;
 
 
 
