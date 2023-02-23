@@ -1,11 +1,10 @@
 package com.example.intermove.Entities.Forum;
 
+import com.example.intermove.Entities.User.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import javafx.geometry.Pos;
 import lombok.*;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 @Data
 @Entity
@@ -13,15 +12,15 @@ import java.util.Date;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Commentaires implements Serializable {
+public class Message {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int commentID;
-    private String comment;
+    private int messageID ;
+    private String content;
     @Temporal(TemporalType.DATE)
-    private Date created_at;
-@ManyToOne
+    private Date sent_at;
+    @ManyToOne
     @JsonIgnore
-    private Post posts ;
+    private User user;
 }
