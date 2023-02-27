@@ -16,12 +16,14 @@ import java.util.List;
 public class Tags {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Integer id;
+    private  Integer idTags;
     private String NameTag;
 
-    @ManyToMany(mappedBy = "tags")
-    @JsonIgnore
-    List<Courses> courses;
+//    @ManyToMany(mappedBy = "tags")
+//    @JsonIgnore
+//    List<Courses> courses;
+@OneToMany(mappedBy = "tags")
+List<CourseTag> courseTags;
 
     @ManyToMany(mappedBy = "tags")
     List<Offer> offers;

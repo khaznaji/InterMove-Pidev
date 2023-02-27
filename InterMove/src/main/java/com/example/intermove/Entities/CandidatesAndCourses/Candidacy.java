@@ -20,7 +20,6 @@ public class Candidacy {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idC ;
     private Integer idEtudiant ;
-    private Integer idUniversite;
     private Date Delai;
     private String DepotDoc;
 

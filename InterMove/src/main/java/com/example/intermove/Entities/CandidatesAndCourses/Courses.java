@@ -15,10 +15,14 @@ import java.util.List;
 public class Courses {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idCourse;
     private String Name;
-    private String DomainCourse;
-    @ManyToMany
-    @JsonIgnore
-    List<Tags> tags;
+   // private String DomainCourse;
+//    @ManyToMany
+//    @JsonIgnore
+//    List<Tags> tags;
+
+    @OneToMany(mappedBy = "cources")
+    List<CourseTag> courseTags;
+
 }
