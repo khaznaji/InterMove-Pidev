@@ -2,6 +2,7 @@ package com.example.intermove.Candidacy.Services;
 
 
 import com.example.intermove.Candidacy.Repository.ICourseRepository;
+import com.example.intermove.Candidacy.Repository.ITagReporsitory;
 import com.example.intermove.Entities.CandidatesAndCourses.Courses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,10 +25,7 @@ public class CourseServices implements ICourseServices{
         return courseRepository.findAll();
     }
 
-    @Override
-    public Iterable<Courses> listcoursesbydomain(String domain) {
-        return courseRepository.findALLByDomainCourse(domain);
-    }
+
 
     @Override
     public Courses getCourseById(Integer id) {
@@ -37,12 +35,10 @@ public class CourseServices implements ICourseServices{
     @Override
     public Courses updateCourse(Courses courses, Integer idC) {
 
-        if (Objects.nonNull(courses.getName()) ) {
-            courses.setName(courses.getName());
-        }
-        if (Objects.nonNull(courses.getDomainCourse()) ) {
-            courses.setDomainCourse(courses.getDomainCourse());
-        }
+//        if (Objects.nonNull(courses.getName()) ) {
+//            courses.setName(courses.getName());
+//        }
+
         return courseRepository.save(courses);
     }
 

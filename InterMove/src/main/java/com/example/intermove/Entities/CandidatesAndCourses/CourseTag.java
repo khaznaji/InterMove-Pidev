@@ -1,14 +1,22 @@
 package com.example.intermove.Entities.CandidatesAndCourses;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.Data;
 
+import javax.persistence.*;
+
+
+@Entity
+@Data
 public class CourseTag {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idC;
-    private Integer idT;
+    private Integer idCT;
+
+    @ManyToOne
+    @JoinColumn(name = "idCourse")
+    Courses cources;
+    @ManyToOne
+    @JoinColumn(name = "idTag")
+    Tags tags;
 
 
 }
