@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -18,7 +19,9 @@ import java.util.Set;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Offer {
+@ToString
+
+public class Offer implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int idoffre;
@@ -32,14 +35,31 @@ public class Offer {
 
     @Enumerated(EnumType.STRING)
     Domain domain;
+
+
+
     @OneToMany(mappedBy="offers")
     @JsonIgnore
     private Set<User> user;
+
+    public Offer(int idoffre) {
+        this.idoffre = idoffre;
+    }
+
+
     @OneToMany(mappedBy = "offer",cascade = CascadeType.ALL )
+    @JsonIgnore
     List<Candidacy> candidacies;
 
     @ManyToMany
     List<Tags> tags;
 
 
+    public int getIdoffre() {
+        return idoffre;
+    }
+
+    public void setIdoffre(int idoffre) {
+        this.idoffre = idoffre;
+    }
 }

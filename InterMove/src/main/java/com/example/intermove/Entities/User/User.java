@@ -11,6 +11,7 @@ import lombok.*;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
@@ -20,7 +21,13 @@ import java.util.Set;
 @AllArgsConstructor
 @Getter
 @Setter
-public class User  {
+@ToString
+
+public class User implements Serializable {
+    public User(int userid) {
+        this.userid = userid;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userid;
