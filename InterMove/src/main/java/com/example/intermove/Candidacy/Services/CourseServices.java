@@ -3,7 +3,9 @@ package com.example.intermove.Candidacy.Services;
 
 import com.example.intermove.Candidacy.Repository.ICourseRepository;
 import com.example.intermove.Candidacy.Repository.ITagReporsitory;
+import com.example.intermove.Entities.CandidatesAndCourses.Candidacy;
 import com.example.intermove.Entities.CandidatesAndCourses.Courses;
+import com.example.intermove.Forum.Controller.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,12 +36,11 @@ public class CourseServices implements ICourseServices{
 
     @Override
     public Courses updateCourse(Courses courses, Integer idC) {
+        Courses course= courseRepository.findById(idC).orElseThrow(() -> new ResourceNotFoundException("Courses", "idC", idC));
 
-//        if (Objects.nonNull(courses.getName()) ) {
-//            courses.setName(courses.getName());
-//        }
+        course.setName(courses.getName());
 
-        return courseRepository.save(courses);
+        return courseRepository.save(course);
     }
 
     @Override
