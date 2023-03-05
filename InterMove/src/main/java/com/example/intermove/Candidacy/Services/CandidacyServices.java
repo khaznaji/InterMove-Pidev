@@ -3,19 +3,25 @@ package com.example.intermove.Candidacy.Services;
 import com.example.intermove.Candidacy.Repository.ICandidacyRepository;
 import com.example.intermove.Entities.CandidatesAndCourses.Candidacy;
 import com.example.intermove.Entities.CandidatesAndCourses.CandidacyStatus;
+import com.example.intermove.Entities.CandidatesAndCourses.OfferTag;
+import com.example.intermove.Entities.CandidatesAndCourses.Tags;
 import com.example.intermove.Entities.Offer.Offer;
 import com.example.intermove.Entities.User.User;
 import com.example.intermove.Forum.Controller.ResourceNotFoundException;
+import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
+
 @Service
 public class CandidacyServices implements ICandidacyServices {
 
     @Autowired
     private ICandidacyRepository candidacyRepository;
+
 
 
 //    @Override
@@ -41,10 +47,34 @@ public class CandidacyServices implements ICandidacyServices {
 
        return candidacyRepository.save(candidacy);
    }
+
     @Override
-    public Candidacy updateCandidature(Candidacy candidature) {
-        return null;
-    }
+    public Candidacy updateCandidacyStatus(Integer id,float score) {
+
+        Candidacy c = candidacyRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Candidacy", "id", id));
+
+        int s =(int)score;
+        if(score <30.00){
+            System.out.println("Bonjour");
+            c.setStatus(CandidacyStatus.Poor);
+        }
+        else if((score>=30.0 )&&(score<65.0) ){
+
+            System.out.println("Hello");
+            c.setStatus(CandidacyStatus.Mid);
+        }
+
+        else {
+
+            System.out.println("Buenos dias");
+            c.setStatus(CandidacyStatus.Good);
+        }
+
+
+
+        c.setScore(score);
+
+        return candidacyRepository.save(c);    }
 
     @Override
     public void deleteCandidature(int id) {
@@ -76,9 +106,29 @@ public class CandidacyServices implements ICandidacyServices {
 
     @Override
     public List<Candidacy> getCandidaturesByStatus(CandidacyStatus status) {
-        return null;
+        return candidacyRepository.findByStatus(status);
     }
 
+    public List<String> getOfferT(int id)
+    {
+        return candidacyRepository.getOfferTag(id);
+    }
+    public Offer getOffreTagsbByCandidature(int id){
+//        Offer o = new Offer();
+//        Candidacy c = candidacyRepository.findById(id).orElse(null);
+//        if (c != null) {
+//             o = c.getOffer();
+//            if (o != null) {
+//                int ido=o.getIdoffre();
+//
+//                return o;
+//
+//            }
+//        }
+//
+//        return o;
+        return null;
+    }
     @Override
     public List<Candidacy> getCandidaturesSubmittedAfterDate(Date date) {
         return null;

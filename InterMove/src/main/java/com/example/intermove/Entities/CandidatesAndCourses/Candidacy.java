@@ -28,6 +28,7 @@ public class Candidacy implements Serializable {
     private String lastName;
     private String email;
     private String phoneNumber;
+    private  float score;
     @CreationTimestamp
     private Date dateCandidacy;
 
@@ -35,22 +36,27 @@ public class Candidacy implements Serializable {
     private CandidacyStatus status = CandidacyStatus.Poor;
 
 
-    public Candidacy(Integer idC, String firstName, String lastName, String email, String phoneNumber, Date dateCandidacy, CandidacyStatus status, Offer offer) {
+
+
+    public Candidacy(Integer idC, String firstName, String lastName, String email, String phoneNumber, float score, Date dateCandidacy, CandidacyStatus status, Offer offer, User user) {
         this.idC = idC;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.score = score;
         this.dateCandidacy = dateCandidacy;
         this.status = status;
         this.offer = offer;
+        this.user = user;
+
     }
 
     //    @ManyToOne
 //    @JsonIgnore
 //    Offer offer;
     @ManyToOne(fetch = FetchType.EAGER)
-    //@JsonIgnore
+
     @JoinColumn(name = "idoffre")
     private Offer offer;
     //(fetch = FetchType.LAZY)
