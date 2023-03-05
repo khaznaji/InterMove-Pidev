@@ -44,12 +44,29 @@ public class CandidacyController {
                 return candidacyService.getAllCandidacies();
         }
 
+        @GetMapping("/ctag/{id}")
+        public List<String> getAlltags(@PathVariable(value = "id") int id) {
+            return candidacyService.getOfferT(id);
+        }
+
         @PutMapping("/update/{id}")
         public ResponseEntity<Candidacy> updateCandidacy(@PathVariable Integer id, @RequestBody Candidacy candidacy) {
                 Candidacy updatedCandidacy = candidacyService.updateCandidacy(id, candidacy);
                 return new ResponseEntity<>(updatedCandidacy, HttpStatus.OK);
 
         }
+        @PutMapping("/updatestatus/{id}/{score}")
+        public ResponseEntity<Candidacy> updateCandidacyStatus(@PathVariable Integer id, @PathVariable float score) {
+            Candidacy updatedCandidacy = candidacyService.updateCandidacyStatus(id,score);
+            return new ResponseEntity<>(updatedCandidacy, HttpStatus.OK);
+
+        }
+
+        // Get Candidacies by Status
+    @GetMapping("/status/{status}")
+    public List<Candidacy> getCandidaturesByStatus(@PathVariable(value = "status") CandidacyStatus status) {
+        return candidacyService.getCandidaturesByStatus(status);
+    }
 }
 
 

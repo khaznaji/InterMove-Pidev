@@ -2,6 +2,8 @@ package com.example.intermove.Candidacy.Services;
 
 import com.example.intermove.Entities.CandidatesAndCourses.Candidacy;
 import com.example.intermove.Entities.CandidatesAndCourses.CandidacyStatus;
+import com.example.intermove.Entities.CandidatesAndCourses.OfferTag;
+import com.example.intermove.Entities.CandidatesAndCourses.Tags;
 import com.example.intermove.Entities.Offer.Offer;
 import com.example.intermove.Entities.User.User;
 
@@ -14,9 +16,9 @@ public interface ICandidacyServices {
 
     Candidacy createCandidature(Candidacy candidature);
     Candidacy updateCandidacy(Integer id,Candidacy candidacy);
-
-    Candidacy updateCandidature(Candidacy candidature);
-
+ Candidacy updateCandidacyStatus(Integer id,float score);
+   // Candidacy updateCandidature(Candidacy candidature);
+    Offer getOffreTagsbByCandidature(int id);
     void deleteCandidature(int id);
 
     List<Candidacy> getAllCandidacies();
@@ -41,6 +43,7 @@ public interface ICandidacyServices {
     void rejectCandidature(Candidacy candidature);
 
     void updateCandidatureStatus(Candidacy candidature, CandidacyStatus status);
+ public List<String> getOfferT(int id);
 
 }
 

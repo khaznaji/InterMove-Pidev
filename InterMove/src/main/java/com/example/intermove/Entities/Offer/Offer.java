@@ -52,6 +52,7 @@ public class Offer implements Serializable {
     List<Candidacy> candidacies;
 
     @ManyToMany
+            @JsonIgnore
     List<Tags> tags;
 
 
