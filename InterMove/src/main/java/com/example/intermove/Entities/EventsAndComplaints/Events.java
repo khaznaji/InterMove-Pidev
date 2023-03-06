@@ -6,9 +6,9 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
-@Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -29,9 +29,9 @@ public class Events {
     private TypeEvent typeEvent;
     @Enumerated(EnumType.STRING)
     private ModaliteEvent modaliteEvent;
-    @OneToMany(mappedBy="events")
-    @JsonIgnore
-    private Set<User> user;
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy="events")
+    public List<User> users;
+
 
 
 }

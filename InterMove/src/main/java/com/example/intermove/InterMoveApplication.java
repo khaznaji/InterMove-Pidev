@@ -11,10 +11,12 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 
+import javax.websocket.server.ServerEndpoint;
 
 
 @SpringBootApplication
 @EnableConfigurationProperties({FileStorageProperties.class})
+
 public class InterMoveApplication  extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {

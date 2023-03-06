@@ -23,14 +23,24 @@ public class User {
     private String nom ;
     private String prenom ;
     private String region ;
+    private String tel ;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
     @JsonIgnore
     public List<Claim> complaints ;
-    @ManyToOne
-    @JsonIgnore
-    private Events events;
 
 
 
 
+
+
+    @ManyToMany
+    public List<Events> events;
+
+    public void setEvents(List<Events> events) {
+        this.events = events;
+    }
+    public List<Events> getEvents() {
+        return events;
+    }
 }

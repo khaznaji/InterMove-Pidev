@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
@@ -99,20 +100,17 @@ public class ClaimService implements IClaimService{
             return claimRepository.getDuplicateComplainers();
 
     }
-    public void sendSimpleEmail(String toEmail,
-                                String body,
-                                String subject) {
+    public void sendEmail(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
         SimpleMailMessage message = new SimpleMailMessage();
-
-        message.setFrom("lyna.khaznaji@gmail.com");
-        message.setTo(toEmail);
-        message.setText(body);
-        message.setSubject(subject);
+        message.setTo(user.getMail());
+        message.setSubject("Claim");
+        message.setText("Hello Miss/Sir  " + user.getNom() + ",\n\nWe have just received your complaint. To talk in detail please join us on this link: http://localhost:8060/InterMove/Claim/room and in the channel please enter this code :"+ user.getId()+
+                "NB: do not give the ID ROOM to anyone,\n InterMove");
 
         mailSender.send(message);
-        System.out.println("Mail Send...");
     }
-
 
 }
 

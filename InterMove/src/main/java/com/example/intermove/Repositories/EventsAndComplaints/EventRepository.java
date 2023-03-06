@@ -11,4 +11,7 @@ import java.util.Optional;
 public interface EventRepository extends JpaRepository<Events,Integer>{
     @Query("SELECT u FROM Events u WHERE u.title LIKE %:title% ")
     List<Events> findByTitle(@Param("title") String title);
+
+    @Query("SELECT e FROM Events e WHERE e.id = ?1")
+    Events findEventsById(Integer id);
 }

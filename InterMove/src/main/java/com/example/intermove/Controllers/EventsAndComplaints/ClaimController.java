@@ -10,10 +10,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.Date;
 import java.util.List;
 
 
@@ -44,6 +44,7 @@ public class ClaimController {
     //public List<Claim> getStatusOfClaim(@PathVariable String status) {
     //   return this.reclamationService.getStatusOfClaim(status);
   // }
+
     @PutMapping ("/updateComplaintAdmin/{id}")
 
     public ResponseEntity<Void> UpdateComplaintAdmin(@PathVariable int id, @RequestParam boolean status) {
@@ -95,22 +96,14 @@ public class ClaimController {
     public List<DuplicateComplainers> duplicateComplainer(){
         return reclamationService.duplicateComplainers();
     }
-
-    @GetMapping("/sendmail/{id}")
-    public Claim sendmail(@PathVariable("id") Integer id){
-
-        String email= reclamationService.findById(id).getUser().getMail();
-
-        reclamationService.sendSimpleEmail(email,
-                "Congratulations, you passed your exam.\n" +
-                        "Now you can get your certification\n" +
-                        "\n" +
-
-                        "\n" +
-                        "thank you",
-                "Certification"
-        );
-
-        return reclamationService.findById(id);
+    @GetMapping("/room")
+    public ModelAndView room() {
+        return new ModelAndView("index");
     }
+    @PostMapping("/{id}/send-email")
+    public ResponseEntity<String> sendEmail(@PathVariable Long id) {
+        reclamationService.sendEmail(id);
+        return ResponseEntity.ok("E-mail envoyé avec succès.");
+    }
+
 }
