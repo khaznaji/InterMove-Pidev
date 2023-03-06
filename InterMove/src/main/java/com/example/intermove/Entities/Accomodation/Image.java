@@ -1,7 +1,9 @@
 package com.example.intermove.Entities.Accomodation;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -11,8 +13,6 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 public class Image {
     @Id
     @Column(name = "id")
@@ -27,8 +27,4 @@ public class Image {
 
     @Column(name = "image", unique = false, nullable = false, length = 100000)
     private byte[] image;
-
-    @ManyToOne
-    @JsonIgnore
-    public House house;
 }
