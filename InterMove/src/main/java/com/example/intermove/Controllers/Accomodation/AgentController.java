@@ -2,13 +2,13 @@ package com.example.intermove.Controllers.Accomodation;
 
 import com.example.intermove.Entities.Accomodation.Agent;
 import com.example.intermove.Services.Accomodation.IAccomodationService;
-//import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//@Tag(name = "Agents Management")
+@Tag(name = "Agents Management")
 @RestController
 @RequestMapping("/Agents")
 public class AgentController {
