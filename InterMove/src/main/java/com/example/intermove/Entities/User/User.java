@@ -1,37 +1,48 @@
 package com.example.intermove.Entities.User;
 
+import com.beust.jcommander.internal.Nullable;
 import com.example.intermove.Entities.EventsAndComplaints.Claim;
 import com.example.intermove.Entities.EventsAndComplaints.Events;
+import com.example.intermove.Entities.Offer.Offer;
+import com.example.intermove.Entities.SkillsAndQuizz.Response;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
-@Data
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
-public class User {
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
+@Builder
+public class User  implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id ;
-    private String mail ;
-    private String pass ;
-    private String nom ;
-    private String prenom ;
-    private String region ;
-    private String tel ;
+    private int userid;
+    private int cin;
+    private String firstname;
+    private String lastname;
+    private String email;
+    private String password;
+    private String phone;
+    private String address;
+    private String profilepicture;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
     @JsonIgnore
     public List<Claim> complaints ;
-
-
-
-
 
 
     @ManyToMany
@@ -42,5 +53,53 @@ public class User {
     }
     public List<Events> getEvents() {
         return events;
+    }
+    @ManyToOne
+    @JsonIgnore
+    private Offer offers;
+    private double score;
+    @Enumerated(EnumType.STRING)
+    private Badge badge;
+    @OneToMany (mappedBy = "student", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Response> responseList;
+    @ManyToMany(cascade = CascadeType.ALL, fetch= FetchType.EAGER)
+    @JsonIgnore
+    private Set<Role> roles;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        for (Role role:roles){
+            authorities.add(new SimpleGrantedAuthority(role.getRoletype().toString()));
+        }
+        return authorities;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    public boolean getId() {return true;
     }
 }

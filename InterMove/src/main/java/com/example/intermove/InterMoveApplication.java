@@ -10,12 +10,14 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import javax.websocket.server.ServerEndpoint;
 
 
 @SpringBootApplication
 @EnableConfigurationProperties({FileStorageProperties.class})
+@EnableScheduling
 
 public class InterMoveApplication  extends SpringBootServletInitializer {
     @Override

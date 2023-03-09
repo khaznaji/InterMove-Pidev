@@ -18,5 +18,5 @@ public interface IEventsService {
     Events UpdateEvent (Events E , Integer id);
     public List<Events> findByTitle(String title);
  //public void AssignUserToEvent (Long id , Integer idE);
-    public void assignUserToEvent(Long userId, Integer eventId) throws Exception;
+    public void assignUserToEvent(int userId, Integer eventId) throws Exception;
 }

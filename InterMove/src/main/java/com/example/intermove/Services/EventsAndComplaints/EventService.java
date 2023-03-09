@@ -4,25 +4,11 @@ import com.example.intermove.Entities.User.User;
 import com.example.intermove.Repositories.EventsAndComplaints.EventRepository;
 import com.example.intermove.Repositories.User.UserRepository;
 
-import com.lowagie.text.Document;
-import com.lowagie.text.Paragraph;
-import com.lowagie.text.pdf.PdfDocument;
-import com.lowagie.text.pdf.PdfWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import com.example.intermove.Entities.EventsAndComplaints.Events;
 
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
-import javax.persistence.EntityManager;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
 
@@ -82,7 +68,7 @@ public class EventService implements IEventsService {
     // }
     @Override
 
-    public void assignUserToEvent(Long userId, Integer eventId) throws Exception {
+    public void assignUserToEvent(int userId, Integer eventId) throws Exception {
         Optional<Events> optionalEvent = eventRepository.findById(eventId);
         if (optionalEvent.isPresent()) {
             Events event = optionalEvent.get();
@@ -116,7 +102,7 @@ public class EventService implements IEventsService {
         }
     }
 
-    public void removeUserFromEvent(Long userId, Integer eventId) throws Exception {
+    public void removeUserFromEvent(int userId, Integer eventId) throws Exception {
         Optional<Events> optionalEvent = eventRepository.findById(eventId);
         if (optionalEvent.isPresent()) {
             Events event = optionalEvent.get();

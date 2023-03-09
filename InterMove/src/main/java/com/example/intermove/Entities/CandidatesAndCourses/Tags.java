@@ -1,12 +1,30 @@
 package com.example.intermove.Entities.CandidatesAndCourses;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.example.intermove.Entities.Offer.Offer;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Tags {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Integer id;
     private String NameTag;
+
+    @ManyToMany(mappedBy = "tags")
+    @JsonIgnore
+    List<Courses> courses;
+
+    @ManyToMany(mappedBy = "tags")
+    List<Offer> offers;
 }

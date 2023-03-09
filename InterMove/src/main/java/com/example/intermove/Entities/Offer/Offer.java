@@ -1,19 +1,120 @@
 package com.example.intermove.Entities.Offer;
 
+import com.example.intermove.Entities.CandidatesAndCourses.Candidacy;
+import com.example.intermove.Entities.CandidatesAndCourses.Tags;
 import com.example.intermove.Entities.Domain;
+import com.example.intermove.Entities.User.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Offer {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id ;
-    private String title;
-    private String description;
-    private Date dateD;
-    private Date dateF;
-    @Enumerated(EnumType.STRING)
-    private Domain domain;
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private int idoffre;
+    private String titre;
+    private String description ;
+    private Date datedebut ;
+    private Date datefin ;
+    private Boolean historique=false;
+    private Boolean restaurer=true;
+    private Boolean  interesse =false;
 
+
+    @Enumerated(EnumType.STRING)
+    Domain domain;
+    @OneToMany(mappedBy="offers")
+    @JsonIgnore
+    private Set<User> user;
+    @OneToMany(mappedBy = "offer",cascade = CascadeType.ALL )
+    List<Candidacy> candidacies;
+
+    @ManyToMany
+    List<Tags> tags;
+
+    @OneToMany(mappedBy = "offer")
+    private List<OfferInteressant> offerInteressants;
+
+
+
+    public int getIdoffre() {
+        return idoffre;
+    }
+
+    public void setIdoffre(int idoffre) {
+        this.idoffre = idoffre;
+    }
+
+    public String getTitre() {
+        return titre;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Date getDatedebut() {
+        return datedebut;
+    }
+
+    public void setDatedebut(Date datedebut) {
+        this.datedebut = datedebut;
+    }
+
+    public Date getDatefin() {
+        return datefin;
+    }
+
+    public void setDatefin(Date datefin) {
+        this.datefin = datefin;
+    }
+
+    public Boolean getHistorique() {
+        return historique;
+    }
+
+    public void setHistorique(Boolean historique) {
+        this.historique = historique;
+    }
+
+    public Boolean getRestaurer() {
+        return restaurer;
+    }
+
+    public void setRestaurer(Boolean restaurer) {
+        this.restaurer = restaurer;
+    }
+
+    public Boolean getInteresse() {
+        return interesse;
+    }
+
+    public void setInteresse(Boolean interesse) {
+        this.interesse = interesse;
+    }
+
+    public Domain getDomain() {
+        return domain;
+    }
+
+    public void setDomain(Domain domain) {
+        this.domain = domain;
+    }
 }
