@@ -11,13 +11,13 @@ import java.util.List;
 
 public interface ClaimRepository extends JpaRepository<Claim,Integer> {
     List<Claim> findByStatus(boolean status);
-    @Query(value="select users.nom ,count(claim.user_id) occ from claim claim"
-            + " left join user users on claim.user_id =users.id"
-            + " group by claim.user_id"
+    @Query(value="select users.lastname ,count(claim.id) occ from claim claim"
+            + " left join user users on claim.id =users.userid"
+            + " group by claim.id"
             + " Order by occ"
             + " DESC ",nativeQuery=true)
 
     public List<MostComplainer> mostComplainer();
-    @Query(value="select distinct users.mail , count(cmp.id) as doublon from user users left join claim cmp on users.id=cmp.user_id group by (cmp.id) ",nativeQuery=true)
+    @Query(value="select distinct users.email , count(cmp.id) as doublon from user users left join claim cmp on users.userid=cmp.id group by (cmp.id) ",nativeQuery=true)
     public List<DuplicateComplainers> getDuplicateComplainers();
 }

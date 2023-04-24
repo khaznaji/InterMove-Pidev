@@ -19,12 +19,21 @@ public class Tags {
     private  Integer idTags;
     private String NameTag;
 
-//    @ManyToMany(mappedBy = "tags")
+    public Integer getIdTags() {
+        return idTags;
+    }
+
+    public void setIdTags(Integer idTags) {
+        this.idTags = idTags;
+    }
+
+    //    @ManyToMany(mappedBy = "tags")
 //    @JsonIgnore
 //    List<Courses> courses;
 @OneToMany(mappedBy = "tags")
 List<CourseTag> courseTags;
 
     @ManyToMany(mappedBy = "tags")
+            @JsonIgnore
     List<Offer> offers;
 }

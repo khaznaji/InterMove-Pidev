@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -24,7 +22,7 @@ public class ClaimService implements IClaimService{
     @Autowired
     private JavaMailSender mailSender;
   @Override
-  public Claim addClaim(Claim claim , Long id) {
+  public Claim addClaim(Claim claim , int id) {
       User e = userRepository.findById(id).orElse(null);
      e.getComplaints().add(claim);
      claim.setUser(e);
@@ -100,13 +98,13 @@ public class ClaimService implements IClaimService{
             return claimRepository.getDuplicateComplainers();
 
     }
-    public void sendEmail(Long userId) {
+    public void sendEmail(int userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(user.getMail());
+        message.setTo(user.getEmail());
         message.setSubject("Claim");
-        message.setText("Hello Miss/Sir  " + user.getNom() + ",\n\nWe have just received your complaint. To talk in detail please join us on this link: http://localhost:8060/InterMove/Claim/room and in the channel please enter this code :"+ user.getId()+
+        message.setText("Hello Miss/Sir  " + user.getLastname() + ",\n\nWe have just received your complaint. To talk in detail please join us on this link: http://localhost:8060/InterMove/Claim/room and in the channel please enter this code :"+ user.getUserid()+
                 "NB: do not give the ID ROOM to anyone,\n InterMove");
 
         mailSender.send(message);

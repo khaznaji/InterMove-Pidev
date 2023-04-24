@@ -6,7 +6,7 @@ import com.example.intermove.Entities.EventsAndComplaints.Events;
 import java.util.List;
 
 public interface IClaimService {
-    public Claim addClaim(Claim claim , Long id) ;
+    public Claim addClaim(Claim claim , int id) ;
     public List<Claim> getAllComplaints();
 
 

@@ -4,13 +4,11 @@ import com.example.intermove.Entities.EventsAndComplaints.Events;
 import com.example.intermove.Entities.EventsAndComplaints.ModaliteEvent;
 import com.example.intermove.Entities.EventsAndComplaints.QRCode;
 import com.example.intermove.Entities.EventsAndComplaints.TypeEvent;
-import com.example.intermove.Entities.User.User;
 import com.example.intermove.Services.EventsAndComplaints.*;
 import com.example.intermove.Services.Files.FileStorageService;
 import com.example.intermove.Services.UserService.UserService;
 
 import com.github.sarxos.webcam.Webcam;
-import com.google.zxing.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
@@ -19,12 +17,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -70,22 +66,23 @@ public class EventsController {
 
 
     @PutMapping("/updateEvents/{id}")
-    public Events UpdateEvents(@PathVariable Integer id, @RequestParam("title") String title,
-                               @RequestParam("description") String desc, @RequestParam("dateD") Date dateD,
-                               @RequestParam("dateF") Date dateF, @RequestParam("nbPlace") int nbP,
-                               @RequestParam("Speaker") MultipartFile Speaker, @RequestParam("typeEvent") TypeEvent typeEvent,
-                               @RequestParam("modaliteEvent") ModaliteEvent modaliteEvent, @RequestParam("upload") MultipartFile upload) {
+    public ResponseEntity<String>  UpdateEvents( @RequestParam("title") String title , @RequestParam("description") String desc,
+                                                @RequestParam("dateD") Date dateD, @RequestParam("dateF") Date dateF,
+                                                @RequestParam("nbPlace") int nbP, @RequestParam("Speaker") String Speaker,
+                                                @RequestParam("typeEvent") TypeEvent typeEvent, @RequestParam("modaliteEvent") ModaliteEvent modaliteEvent
+            , @RequestParam("upload") String upload , @PathVariable Integer id ) {
         Events events = new Events();
         events.setTitle(title);
         events.setDescription(desc);
         events.setDateD(dateD);
         events.setDateF(dateF);
-        events.setSpeaker(fileStorageService.storeFile(Speaker));
+        events.setSpeaker(Speaker);
         events.setTypeEvent(typeEvent);
         events.setModaliteEvent(modaliteEvent);
         events.setNbreDePlaces(nbP);
-        events.setImage(fileStorageService.storeFile(upload));
-        return service.UpdateEvent(events, id);
+        events.setImage(upload);
+         service.UpdateEvent(events, id);
+        return new ResponseEntity<String>("events with " + id + "has been saved", HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
@@ -106,7 +103,7 @@ public class EventsController {
     }
 
     @PostMapping(value = "/affecter-user-event/{id}/{idE}")
-    public ResponseEntity<String> affecterUserToEvent(@PathVariable("id") Long id, @PathVariable("idE") Integer idE) {
+    public ResponseEntity<String> affecterUserToEvent(@PathVariable("id") int id, @PathVariable("idE") Integer idE) {
 
         // service.AssignUserToEvent(id, idE);
 
@@ -125,7 +122,7 @@ public class EventsController {
     @Autowired
     private TwillioServiceImpl twillioService;
     @DeleteMapping(value = "/remove-user-event/{id}/{idE}")
-    public ResponseEntity<String> RemoveaffecterUserToEvent(@PathVariable("id") Long id, @PathVariable("idE") Integer idE) {
+    public ResponseEntity<String> RemoveaffecterUserToEvent(@PathVariable("id") int id, @PathVariable("idE") Integer idE) {
 
         // service.AssignUserToEvent(id, idE);
 

@@ -1,13 +1,11 @@
 package com.example.intermove.Entities.EventsAndComplaints;
 
 import com.example.intermove.Entities.User.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @NoArgsConstructor

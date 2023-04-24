@@ -29,9 +29,19 @@ public class Candidacy implements Serializable {
     private String email;
     private String phoneNumber;
     private  float score;
+
+    public CandidacySituation getSituation() {
+        return Situation;
+    }
+
+    public void setSituation(CandidacySituation situation) {
+        Situation = situation;
+    }
+
     @CreationTimestamp
     private Date dateCandidacy;
-
+    @Enumerated(EnumType.STRING)
+    private CandidacySituation Situation = CandidacySituation.Wait;
     @Enumerated(EnumType.STRING)
     private CandidacyStatus status = CandidacyStatus.Poor;
 
@@ -64,6 +74,7 @@ public class Candidacy implements Serializable {
 
 
     @ManyToOne(fetch = FetchType.EAGER)
+
     @JoinColumn(name = "userid")
     private User user;
             //(fetch = FetchType.LAZY)

@@ -1,10 +1,12 @@
-package com.example.intermove.Entities.Forum;
+package com.example.intermove.Entities.forum;
 
+import com.example.intermove.Entities.User.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 @Data
 @Entity
@@ -16,11 +18,16 @@ public class Comment implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int commentID;
+    private long commentID;
     private String content;
-    @Temporal(TemporalType.DATE)
-    private Date created_at;
-@ManyToOne
-    @JsonIgnore
-    private Post posts ;
+
+    private LocalDateTime created_at;
+    @ManyToOne
+    private Post post ;
+    @PrePersist
+    protected void onCreate() {
+        this.created_at = LocalDateTime.now();
+    }
+    @ManyToOne
+    private User user ;
 }

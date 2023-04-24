@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -27,5 +29,8 @@ public class House {
     @JsonIgnore
     public Agency agency;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="house")
+    @JsonIgnore
+    public List<Image> images;
 
 }

@@ -1,10 +1,11 @@
-package com.example.intermove.Entities.Forum;
+package com.example.intermove.Entities.forum;
 
 import com.example.intermove.Entities.User.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 @Data
 @Entity
@@ -16,11 +17,15 @@ public class Message {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int messageID ;
+    private long messageID ;
     private String content;
-    @Temporal(TemporalType.DATE)
-    private Date sent_at;
+    private LocalDateTime sent_at;
+
     @ManyToOne
-    @JsonIgnore
-    private User user;
-}
+    private User sender;
+    @ManyToOne
+    private User receiver;
+    @PrePersist
+    protected void onCreate() {
+        this.sent_at = LocalDateTime.now();
+}}

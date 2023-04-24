@@ -29,7 +29,7 @@ public class ClaimController {
 
     public Claim addReclamation(@RequestParam("objet") String objet, @RequestParam ("message") String message,
                                 @RequestParam ("typeClaim") TypeClaim typeClaim
-            , @RequestParam("upload") MultipartFile upload ,@PathVariable Long id) throws IOException, URISyntaxException
+            , @RequestParam("upload") MultipartFile upload ,@PathVariable int id) throws IOException, URISyntaxException
     {
 
         Claim claim = new Claim() ;
@@ -52,24 +52,24 @@ public class ClaimController {
         return ResponseEntity.ok().build();
     }
     @PutMapping ("/updateComplaint/{id}")
-    public Claim UpdateComplaint( @PathVariable Integer id,@RequestParam("objet") String objet, @RequestParam ("message") String message,
+    public Claim UpdateComplaint( @PathVariable Integer id , @RequestParam("objet") String objet, @RequestParam ("message") String message,
                                   @RequestParam ("typeClaim") TypeClaim typeClaim
-            , @RequestParam("upload") MultipartFile upload ) throws IOException, URISyntaxException
+            , @RequestParam("upload") String upload ) throws IOException, URISyntaxException
     {
 
         Claim claim = new Claim() ;
         claim.setObjet(objet);
         claim.setMessage(message);
         claim.setTypeClaim(typeClaim);
-        claim.setImage(fileStorageService.storeFile(upload));
+        claim.setImage(upload);
         return reclamationService.UpdateClaim(claim, id);
     }
 
     @GetMapping("/list")
-    public List<Claim> getAllComplaintsdetails()
+    public ResponseEntity<List<Claim>>  getAllComplaintsdetails()
     {
-        List<Claim> listComplaint = reclamationService.getAllComplaints();
-        return listComplaint;    }
+        List<Claim> list = reclamationService.getAllComplaints();
+        return new ResponseEntity<List<Claim>>(list, HttpStatus.OK);}
 
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable("id") Integer id) {
@@ -101,7 +101,7 @@ public class ClaimController {
         return new ModelAndView("index");
     }
     @PostMapping("/{id}/send-email")
-    public ResponseEntity<String> sendEmail(@PathVariable Long id) {
+    public ResponseEntity<String> sendEmail(@PathVariable int id) {
         reclamationService.sendEmail(id);
         return ResponseEntity.ok("E-mail envoyé avec succès.");
     }
