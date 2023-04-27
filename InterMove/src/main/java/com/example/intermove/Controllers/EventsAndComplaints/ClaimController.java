@@ -52,16 +52,16 @@ public class ClaimController {
         return ResponseEntity.ok().build();
     }
     @PutMapping ("/updateComplaint/{id}")
-    public Claim UpdateComplaint( @PathVariable Integer id , @RequestParam("objet") String objet, @RequestParam ("message") String message,
+    public Claim UpdateComplaint( @PathVariable Integer id,@RequestParam("objet") String objet, @RequestParam ("message") String message,
                                   @RequestParam ("typeClaim") TypeClaim typeClaim
-            , @RequestParam("upload") String upload ) throws IOException, URISyntaxException
+            , @RequestParam("upload") MultipartFile upload ) throws IOException, URISyntaxException
     {
 
         Claim claim = new Claim() ;
         claim.setObjet(objet);
         claim.setMessage(message);
         claim.setTypeClaim(typeClaim);
-        claim.setImage(upload);
+        claim.setImage(fileStorageService.storeFile(upload));
         return reclamationService.UpdateClaim(claim, id);
     }
 

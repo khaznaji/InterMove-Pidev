@@ -118,6 +118,9 @@ public class OffreService implements IOffreService{
         Offer offer = offreRepo.findById(idoffre).get();
 
 
+
+
+
         OfferInteressant interessant = new OfferInteressant();
         interessant.setOffer(offer);
         interessant.setDescription(offer.getDescription());
@@ -208,7 +211,7 @@ public class OffreService implements IOffreService{
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
             Offer offer =  offreRepo.findById(idoffre).get();
-            String titre ="Title : "+offer.getTitre();
+            String titre ="Title Of Plan: "+offer.getTitre();
             String description = "description: " + offer.getDescription();
 
 //            String datedebut ="datedebut:"+ offer.getDatedebut().toString();
@@ -291,7 +294,7 @@ public class OffreService implements IOffreService{
 
         offer.setHistorique(true);
         Offer o=retrieveOffre(idoffre);
-     //   offreRepo.delete(o);
+      //  offreRepo.delete(o);
        // offreRepo.save(offer);
 
 

@@ -20,6 +20,4 @@ public interface IServiceQuiz {
     void updateQuestion(Question question);
     public List<Question> shuffleResponses(int idQuiz);
     List<User> getUsersByScore();
-    Question getMostRespondedQuestionOnQuiz(int idQuiz);
-
 }

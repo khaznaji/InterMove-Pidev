@@ -32,7 +32,7 @@ public class CandidacyController {
            // candidacy.setUser(new User(1));
                 Candidacy createdCandidacy = candidacyService.createCandidature(candidacy);
                 System.out.println(candidacy);
-                return new ResponseEntity<>(candidacy, HttpStatus.CREATED);
+                return new ResponseEntity<>(createdCandidacy, HttpStatus.CREATED);
         }
         @GetMapping("/{id}")
         public Candidacy getCandidatureById(@PathVariable(value = "id") int id) {

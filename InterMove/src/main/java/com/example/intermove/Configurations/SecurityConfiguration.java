@@ -60,7 +60,7 @@ public class SecurityConfiguration {
                 .antMatchers("/Claim/reclamation/{{id}}").permitAll()
                 .antMatchers("/Claim/updateComplaintAdmin/{{id}}").permitAll()
                 .antMatchers("/Claim/updateComplaint/{{id}}").permitAll()
-                .antMatchers("/Claim/list").permitAll()
+                .antMatchers("Claim/list").permitAll()
                 .antMatchers("/Claim/delete/{{id}}").permitAll()
                 .antMatchers("/Claim/getClaimbyid/{{id}}").permitAll()
                 .antMatchers("/Claim/getStatus/{{status}}").permitAll()
@@ -69,11 +69,6 @@ public class SecurityConfiguration {
                 .antMatchers("/Claim/{{id}}/send-email").permitAll()
                 .antMatchers("/twilio/make-call/{{userId}}").permitAll()
                 .antMatchers("/candidacy/create").permitAll()
-                .antMatchers("/candidacy/status/{{status}}").permitAll()
-                .antMatchers("/candidacy/user/{{userId}}").permitAll()
-                .antMatchers("/course/create").permitAll()
-                .antMatchers("/tag/create").permitAll()
-                .antMatchers("/tag/offers/{{offerId}}/tags").permitAll()
 
                 //achraf
                 .antMatchers("/quiz/addQuiz").permitAll()
@@ -88,8 +83,6 @@ public class SecurityConfiguration {
                 .antMatchers("/quiz/updateQuiz").permitAll()
                 .antMatchers("/quiz/deleteQuestion/{{idQuestion}}").permitAll()
                 .antMatchers("/quiz/updateQuestion").permitAll()
-                .antMatchers("/quiz/getMostRespondedQuestionOnQuiz/{{idQuiz}}").permitAll()
-
 
                 //skills
                 .antMatchers("/gestionSkills/addSkillsToUser/{{id}}").permitAll()
@@ -97,34 +90,6 @@ public class SecurityConfiguration {
                 .antMatchers("/gestionSkills/retrieve-all-Skills").permitAll()
                 .antMatchers("/gestionSkills/addSkillsToUser/{{id}}").permitAll()
                 .antMatchers("/gestionSkills/updateSkills/{{id}}").permitAll()
-
-
-//rayen
-                .antMatchers("/Houses/AllHouses").permitAll()
-                .antMatchers("/Houses/addHouse/{idAgency}").permitAll()
-                .antMatchers("/Houses/updateHouse").permitAll()
-                .antMatchers("/Houses/deleteHouse/{id}").permitAll()
-                .antMatchers("/Houses/getHouseById/{id}").permitAll()
-                .antMatchers("/Houses/SearchHouse").permitAll()
-                .antMatchers("/Houses/upload/image").permitAll()
-                .antMatchers("/Houses/get/image/{name}").permitAll()
-                .antMatchers("/Houses/get/houseimage/{idh}").permitAll()
-                .antMatchers("/checkout").permitAll()
-                .antMatchers("/charge").permitAll()
-                .antMatchers("/Agents/AllAgents").permitAll()
-                .antMatchers("/Agents/addAgent/{idAgency}").permitAll()
-                .antMatchers("/Agents/updateAgent").permitAll()
-                .antMatchers("/Agents/deleteAgent/{id}").permitAll()
-                .antMatchers("/Agents/getAgentById/{id}").permitAll()
-                .antMatchers("/Agencies/AllAgencies").permitAll()
-                .antMatchers("/Agencies/addAgency").permitAll()
-                .antMatchers("/Agencies/updateAgency").permitAll()
-                .antMatchers("/Agencies/deleteAgency/{id}").permitAll()
-                .antMatchers("/Agencies/getAgencyById/{id}").permitAll()
-
-
-
-
 
 
 
@@ -203,6 +168,13 @@ public class SecurityConfiguration {
                 .antMatchers("/candidacy/status/{{status}}").permitAll()
                 .antMatchers("/candidacy/user/{{userId}}").permitAll()
                 .antMatchers("/course/create").permitAll()
+                .antMatchers("/tag/create").permitAll()
+                .antMatchers("/tag/offers/{{offerId}}/tags").permitAll()
+
+
+
+
+
 
 
 

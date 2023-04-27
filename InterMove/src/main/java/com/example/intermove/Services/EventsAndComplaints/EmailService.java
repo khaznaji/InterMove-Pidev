@@ -25,7 +25,7 @@ public class EmailService {
 
         mailSender.send(message);
     }
-    public void sendEmaill(String to, String subject, Candidacy c) {
+    public void sendEmaill(String to, String subject,String firstname,Candidacy c) {
 
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
@@ -34,7 +34,7 @@ public class EmailService {
         try {
             helper.setTo(to);
             helper.setSubject(subject);
-            helper.setText("<!DOCTYPE html><html> <head> <title>Job Application Accepted</title> </head> <body style='font-family: Arial, sans-serif; font-size: 14px;'> <h1>Congratulations, Your Job Application Has Been Accepted!</h1> <p>Dear "+c.getFirstName()+" "+c.getLastName()+",</p> <p>We are pleased to inform you that your application for the position of"+ c.getOffer().getTitre() +"at *** has been accepted. You have been selected as one of our top candidates, and we believe that your skills and experience will be a great asset to our team.</p> <p>We will be contacting you shortly to discuss the next steps in the hiring process. In the meantime, please feel free to reach out to us if you have any questions or concerns.</p> <p>Thank you for your interest in working with us, and we look forward to welcoming you to our team!</p> <p>Best regards,<br>HR TEAM<br>****</p> </body> </html> ",true);
+            helper.setText("<!DOCTYPE html><html> <head> <title>Job Application Accepted</title> </head> <body style='font-family: Arial, sans-serif; font-size: 14px;'> <h1>Congratulations, Your Job Application Has Been Accepted!</h1> <p>Dear "+firstname+",</p> <p>We are pleased to inform you that your application for the position of"+ c.getOffer().getTitre() +"at *** has been accepted. You have been selected as one of our top candidates, and we believe that your skills and experience will be a great asset to our team.</p> <p>We will be contacting you shortly to discuss the next steps in the hiring process. In the meantime, please feel free to reach out to us if you have any questions or concerns.</p> <p>Thank you for your interest in working with us, and we look forward to welcoming you to our team!</p> <p>Best regards,<br>HR TEAM<br>****</p> </body> </html> ",true);
 
             mailSender.send(mimeMessage);
         }

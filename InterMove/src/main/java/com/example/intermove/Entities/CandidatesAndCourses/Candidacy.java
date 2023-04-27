@@ -24,10 +24,10 @@ public class Candidacy implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idC ;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String phoneNumber;
+//    private String firstName;
+//    private String lastName;
+//    private String email;
+//    private String phoneNumber;
     private  float score;
 
     public CandidacySituation getSituation() {
@@ -50,10 +50,10 @@ public class Candidacy implements Serializable {
 
     public Candidacy(Integer idC, String firstName, String lastName, String email, String phoneNumber, float score, Date dateCandidacy, CandidacyStatus status, Offer offer, User user) {
         this.idC = idC;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.email = email;
+//        this.phoneNumber = phoneNumber;
         this.score = score;
         this.dateCandidacy = dateCandidacy;
         this.status = status;

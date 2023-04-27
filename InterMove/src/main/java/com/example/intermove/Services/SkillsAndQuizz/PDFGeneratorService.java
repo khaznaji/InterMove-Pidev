@@ -48,9 +48,9 @@ public class PDFGeneratorService {
         FileOutputStream pdfOutputFile = new FileOutputStream("./sample1.pdf");
         Skills skills = skillsRepository.findById(id).get();
 
-        String description = "votre message de motivation : "+skills.getDescription();
-        String email = "pour plus d'information sur le quiz déja fait "+skills.getQuiz().getNom();
-        String description1 = "votre domain de ton skill : "+skills.getDomain()+"\n\n\n\n\n\n\n\n\n\n\n\n";
+        String description = "Notre Agence met a votre disposition : "+skills.getDescription();
+        String email = "pour plus d'information merci de contacter l'agent responsable: "+skills.getQuiz().getNom();
+        String description1 = "Composer de : "+skills.getDomain()+"\n\n\n\n\n\n\n\n\n\n\n\n";
         String date = "Date limite pour postuler est : "+skills.getQuiz().getNom();
         final PdfWriter pdfWriter = PdfWriter.getInstance(document, pdfOutputFile);
 
@@ -70,7 +70,7 @@ public class PDFGeneratorService {
 
 
 
-        Paragraph paragraph = new Paragraph("SKILLS",fontTitle);
+        Paragraph paragraph = new Paragraph("OFFER",fontTitle);
         paragraph.setAlignment(Paragraph.ALIGN_CENTER);
 
         Font fontParagraph = FontFactory.getFont(FontFactory.HELVETICA);

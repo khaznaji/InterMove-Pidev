@@ -47,10 +47,8 @@ public class Offer {
     List<Tags> tags;
 
     @OneToMany(mappedBy = "offer")
-    @JsonIgnore
     private List<OfferInteressant> offerInteressants;
     @OneToMany(mappedBy = "offer")
-    @JsonIgnore
     private List<OfferHistory> offerHistories;
 
     public Offer(int idoffre) {

@@ -87,7 +87,7 @@ public class User  implements UserDetails {
     @OneToMany (mappedBy = "student", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Response> responseList;
-    @ManyToMany(cascade = CascadeType.ALL, fetch= FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch= FetchType.LAZY)
     @JsonIgnore
     private Set<Role> roles;
     @OneToMany (mappedBy = "user", cascade = CascadeType.ALL)
@@ -112,7 +112,6 @@ public class User  implements UserDetails {
         }
         return authorities;
     }
-
 
     @Override
     public String getUsername() {

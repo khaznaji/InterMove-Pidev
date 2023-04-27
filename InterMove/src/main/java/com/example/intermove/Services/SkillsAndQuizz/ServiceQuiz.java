@@ -220,33 +220,5 @@ public class ServiceQuiz implements IServiceQuiz {
             userRepository.save(u);
         }
     }
-    public Question getMostRespondedQuestionOnQuiz(int idQuiz){
-        Quiz quiz=quizRepository.findById(idQuiz).orElse(null);
-        Map<Question,List<Response>> questionResponses=new HashMap<>();
-        for(Question question:quiz.getQuestions()){
-            questionResponses.put(question,question.getStudentResponses());
-        }
 
-        Map<Question,Integer> questionCorrectCounts=new HashMap<>();
-        for(Map.Entry<Question,List<Response>> entry:questionResponses.entrySet()){
-            Question question=entry.getKey();
-            int correctCount=0;
-            for(Response response:entry.getValue()){
-                if(response.getStatus().equals(ResponseStatus.CORRECT)){
-                    correctCount++;
-                }
-            }
-            questionCorrectCounts.put(question,correctCount);
-        }
-        //System.out.println(questionCorrectCounts);
-        Map<Question,Integer> sortedMap=questionCorrectCounts.entrySet().stream()
-                .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
-                .collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        Map.Entry::getValue,
-                        (oldValue,newValue)->oldValue,
-                        LinkedHashMap::new
-                ));
-        return sortedMap.keySet().iterator().next();
-    }
 }

@@ -24,7 +24,7 @@ public class EmailController {
         Candidacy c=candidacyService.getCandidatureById(id);
         String body = "<h1>Congratulations, Your Job Application Has Been Accepted!</h1> <p>Dear [Candidate Name]<p>We are pleased to inform you that your application for the position of [Job Title] at [Company Name] has been accepted. You have been selected as one of our top candidates, and we believe that your skills and experience will be a great asset to our team.</p>";
 
-        emailService.sendEmaill(to, subject, c);
+        emailService.sendEmaill(to, subject, "user",c);
         return ResponseEntity.ok("Email sent successfully.");
     }
 }

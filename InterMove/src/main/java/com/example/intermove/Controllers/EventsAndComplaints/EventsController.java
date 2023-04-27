@@ -66,21 +66,21 @@ public class EventsController {
 
 
     @PutMapping("/updateEvents/{id}")
-    public ResponseEntity<String>  UpdateEvents( @RequestParam("title") String title , @RequestParam("description") String desc,
-                                                @RequestParam("dateD") Date dateD, @RequestParam("dateF") Date dateF,
-                                                @RequestParam("nbPlace") int nbP, @RequestParam("Speaker") String Speaker,
-                                                @RequestParam("typeEvent") TypeEvent typeEvent, @RequestParam("modaliteEvent") ModaliteEvent modaliteEvent
-            , @RequestParam("upload") String upload , @PathVariable Integer id ) {
-        Events events = new Events();
+    public ResponseEntity<String>  UpdateEvents(@PathVariable Integer id,@RequestParam("title") String title, @RequestParam("description") String desc,
+                               @RequestParam("dateD") Date dateD, @RequestParam("dateF") Date dateF,
+                               @RequestParam("nbPlace") int nbP, @RequestParam("Speaker") MultipartFile Speaker,
+                               @RequestParam("typeEvent") TypeEvent typeEvent, @RequestParam("modaliteEvent") ModaliteEvent modaliteEvent
+            , @RequestParam("upload") MultipartFile upload) {Events events = new Events();
+
         events.setTitle(title);
         events.setDescription(desc);
         events.setDateD(dateD);
         events.setDateF(dateF);
-        events.setSpeaker(Speaker);
+        events.setSpeaker(fileStorageService.storeFile(Speaker));
         events.setTypeEvent(typeEvent);
         events.setModaliteEvent(modaliteEvent);
         events.setNbreDePlaces(nbP);
-        events.setImage(upload);
+        events.setImage(fileStorageService.storeFile(upload));
          service.UpdateEvent(events, id);
         return new ResponseEntity<String>("events with " + id + "has been saved", HttpStatus.OK);
     }

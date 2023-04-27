@@ -32,10 +32,10 @@ public class CandidacyServices implements ICandidacyServices {
    public Candidacy updateCandidacy(Integer id, Candidacy candidacyDetails) {
        Candidacy candidacy = candidacyRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Candidacy", "id", id));
 
-       candidacy.setFirstName(candidacyDetails.getFirstName());
-       candidacy.setLastName(candidacyDetails.getLastName());
-       candidacy.setEmail(candidacyDetails.getEmail());
-       candidacy.setPhoneNumber(candidacyDetails.getPhoneNumber());
+//       candidacy.setFirstName(candidacyDetails.getFirstName());
+//       candidacy.setLastName(candidacyDetails.getLastName());
+//       candidacy.setEmail(candidacyDetails.getEmail());
+//       candidacy.setPhoneNumber(candidacyDetails.getPhoneNumber());
        candidacy.setStatus(candidacyDetails.getStatus());
        candidacy.setOffer(candidacyDetails.getOffer());
        candidacy.setUser(candidacyDetails.getUser());

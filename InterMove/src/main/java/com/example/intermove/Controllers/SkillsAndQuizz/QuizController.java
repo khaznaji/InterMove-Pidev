@@ -68,10 +68,6 @@ public class QuizController {
     public List<User> sortByScore(){
         return serviceQuiz.getUsersByScore();
     }
-    @GetMapping("/getMostRespondedQuestionOnQuiz/{idQuiz}")
-    public Question getMostRespondedQuestionOnQuiz(@PathVariable int idQuiz){
-        return serviceQuiz.getMostRespondedQuestionOnQuiz(idQuiz);
-    }
 }
 @Getter
 @Setter

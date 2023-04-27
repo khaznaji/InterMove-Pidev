@@ -1,5 +1,6 @@
 package com.example.intermove.Services.Candidacy;
 
+import com.example.intermove.Entities.CandidatesAndCourses.Candidacy;
 import com.example.intermove.Entities.CandidatesAndCourses.Tags;
 import com.example.intermove.Entities.Offer.Offer;
 

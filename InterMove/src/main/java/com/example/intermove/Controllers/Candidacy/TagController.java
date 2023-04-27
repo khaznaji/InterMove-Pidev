@@ -1,7 +1,9 @@
 package com.example.intermove.Controllers.Candidacy;
 
+import com.example.intermove.Entities.CandidatesAndCourses.Candidacy;
 import com.example.intermove.Entities.CandidatesAndCourses.Tags;
 import com.example.intermove.Entities.Offer.Offer;
+import com.example.intermove.Services.Candidacy.ICandidacyServices;
 import com.example.intermove.Services.Candidacy.ITagServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
