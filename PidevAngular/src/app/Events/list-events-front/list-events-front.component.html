@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Template Mo">
+   
+<!--
+
+TemplateMo 569 Edu Meeting
+
+https://templatemo.com/tm-569-edu-meeting
+
+-->
+  </head>
+
+<body>
+
+   
+
+ 
+
+  <!-- ***** Header Area End ***** -->
+
+  <section class="heading-page header-text" id="top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h6>Here are our upcoming meetings</h6>
+          <h2>Upcoming Meetings</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="meetings-page" id="meetings">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-12">
+              
+            </div>
+            
+            <div class="col-lg-4 templatemo-item-col all imp" *ngFor="let event of events | async">
+                <div class="meeting-item">
+                  <div class="thumb">
+                    <div class="price">
+                    </div>
+                    <a href="meeting-details.html"><img src="assets/img/{{ event.image }}" width="100"></a>
+                  </div>
+                  <div class="down-content">
+                    <div class="date">
+                      <h6>{{ event.dateF | date: 'dd/MM/yy' }}</h6>
+                    
+
+                      <h6>{{ event.dateD | date: 'dd/MM/yy' }}</h6>
+
+                    </div>
+                    <a href="meeting-details.html"><h4>{{ event.title }} </h4></a>
+                    <hr>
+                <!-- <p>Type Event: <b>{{ event.typeEvent }}</b></p>
+                <p>Modalite Event: <b>{{ event.modaliteEvent  }}</b> </p>    
+                <p>Description: <b>{{ event.description  }}</b> </p>   
+                <p>Nombre de places: <b>{{ event.nbreDePlaces }}</b> </p>    
+ 
+                <ng-container *ngIf="!participatedEvents.includes(event.id)">
+                    <button class="btn btn-primary" [disabled]="event.nbreDePlaces === 0" (click)="participate(1, event.id)">Participer</button>
+                  </ng-container>
+                  <ng-container *ngIf="participatedEvents.includes(event.id)">
+                    <button class="btn btn-danger" (click)="removeparticipate(1, event.id)">Annuler</button>
+                  </ng-container> -->
+                  <button (click)="showEventDetails(event.id)">View Details</button>
+
+                  </div>
+                </div>
+              </div>
+              
+            <div class="col-lg-12">
+              <div class="pagination">
+                <ul>
+                  
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <p>Copyright © 2022 Edu Meeting Co., Ltd. All Rights Reserved. 
+          <br>
+          Design: <a href="https://templatemo.com" target="_parent" title="free css templates">TemplateMo</a>
+          <br>
+          Distibuted By: <a href="https://themewagon.com" target="_blank" title="Build Better UI, Faster">ThemeWagon</a>
+        </p>
+    </div>
+  </section>
+
+
+  <script>
+    //according to loftblog tut
+    $('.nav li:first').addClass('active');
+
+    var showSection = function showSection(section, isAnimate) {
+      var
+      direction = section.replace(/#/, ''),
+      reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+      reqSectionPos = reqSection.offset().top - 0;
+
+      if (isAnimate) {
+        $('body, html').animate({
+          scrollTop: reqSectionPos },
+        800);
+      } else {
+        $('body, html').scrollTop(reqSectionPos);
+      }
+
+    };
+
+    var checkSection = function checkSection() {
+      $('.section').each(function () {
+        var
+        $this = $(this),
+        topEdge = $this.offset().top - 80,
+        bottomEdge = topEdge + $this.height(),
+        wScroll = $(window).scrollTop();
+        if (topEdge < wScroll && bottomEdge > wScroll) {
+          var
+          currentId = $this.data('section'),
+          reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+          reqLink.closest('li').addClass('active').
+          siblings().removeClass('active');
+        }
+      });
+    };
+
+    $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
+      e.preventDefault();
+      showSection($(this).attr('href'), true);
+    });
+
+    $(window).scroll(function () {
+      checkSection();
+    });
+</script>
+</body>
+
+
+
+</html>
+
+

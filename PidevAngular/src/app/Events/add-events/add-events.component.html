@@ -1,0 +1,41 @@
+<div class="container rounded h-100 p-4"[hidden]="submitted" style="width: 400px; background-color: black;">
+    <form (ngSubmit)="onSubmit()" enctype="multipart/form-data">   
+        <label>Title</label>
+    <input type="text" class="form-control" id="firstName" required [(ngModel)]="events.title" name="firstName">
+    
+    <label>Description</label>
+    <input type="text" class="form-control" id="firstName" required [(ngModel)]="events.description" name="firstName">
+
+    <label>Start Date</label>
+    <input type="date" [(ngModel)]="events.dateD" name="dateF" required>
+
+          <label>End Date</label>
+    <input type="date" [(ngModel)]="events.dateF" name="dateF" required>
+    
+    <label>Number of Places</label>
+    <input type="number" [(ngModel)]="events.nbreDePlaces" name="nbreDePlaces" required>
+    
+    <div class="mb-3">
+        <label for="formFile" class="form-label">Image Event</label>
+        <input type="file" class="form-control" id="firstName" required (change)="onFileSelected($event)" name="image">
+      </div>
+      
+      <div class="mb-3">
+        <label for="formFile" class="form-label">QrCode</label>
+        <input type="file" class="form-control" id="firstName" required (change)="onFileSelected2($event)" name="image">
+      </div>
+    <label>Type of Event</label>
+    <select [(ngModel)]="events.typeEvent" name="typeEvent" required>
+        <option>Workshop</option>
+        <option>Webinaire</option>
+
+    </select>
+    
+    <label>Modality of Event</label>
+    <select [(ngModel)]="events.modaliteEvent" name="modaliteEvent" required>
+        <option>Presentiel</option>
+        <option>Distanciel</option>  
+    </select>
+
+    <button type="submit">Save Event</button>
+  </form>

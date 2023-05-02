@@ -1,0 +1,54 @@
+
+<div class="col-12">
+    <div class=" rounded h-100 p-4">
+        <h6 class="mb-4">List Of Events</h6>
+        <select [(ngModel)]="selectedStatus" (change)="onStatusChange()">
+            <option value="">Tous</option>
+            <option value="true">Reclamations Traitees</option>
+            <option value="false">Reclamations Non Traitees</option>
+          </select>
+          <hr>
+        <div class="table-responsive" >
+          
+            <table class="table">
+                <thead>
+                    <tr>  
+                      
+                        <th scope="col">#</th>
+                        <th scope="col">Objet</th>
+                        <th scope="col">Mssage</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">TypeClaim</th>
+
+
+                        <th scope="col">Status</th>
+                        <th scope="col">Date</th>
+
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <tr *ngFor="let claim of filteredComplaints">
+                            <td>      {{ claim.id }}    </td>
+                            <td>      {{ claim.objet }}    </td>
+                            <td>      {{ claim.message }}    </td>
+                            <td>      {{ claim.image }}    </td>
+                            <td>      {{ claim.typeClaim }}    </td>
+                                                    <td>      {{ claim.status  ? 'Traité' : 'Non traité' }}    </td>
+                            <td>{{ claim.date | date: 'dd/MM/yy' }}</td>
+                            <td> <button (click)="deleteClaim(claim.id)" class="btn btn-danger"><span class="bi bi-trash"></span></button>
+                                <td>              <button (click)="updateComplaints(claim.id)" class="btn btn-info" style="margin-left: 10px"><span class='bi bi-pencil-square'></span></button>
+</td> <td>
+
+</td>
+
+                    </tr>
+                   
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
