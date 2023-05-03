@@ -1,0 +1,5 @@
+export enum Domain {
+    
+    Informatique 
+
+}

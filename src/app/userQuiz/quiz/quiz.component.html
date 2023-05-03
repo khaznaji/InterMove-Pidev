@@ -1,0 +1,22 @@
+
+<div class="user-info">
+  <div class="user-score">
+    Score: {{score}}</div>
+    <div class="user-badge" [ngClass]="{ platinum: badge === 'PLATINUM', gold: badge === 'GOLD', silver: badge === 'SILVER', bronze: badge === 'BRONZE' }">
+      Badge: {{badge}}
+    </div>
+  
+</div>
+
+
+<div class="container text-center">
+    <div class="row row-cols-3 row-cols-lg-3 g-2 g-lg-3" >
+      <div class="col my-col" *ngFor="let quiz of quizs" 
+      [ngClass]="{'quiz-finish': quiz.etat === 'Finish', 'quiz-not-finish': quiz.etat !== 'Finish'}">
+        <div class="p-3">{{quiz.nom}}</div>
+        <div class="p-3">{{quiz.description}}</div>
+        <div class="quiz-state">{{quiz.etat}}</div>
+        <button class="quiz-btn" *ngIf="quiz.etat=='Not'" routerLink="/userQuestion/{{quiz.id}}">Start Quiz</button>
+      </div>
+    </div>
+  </div>
